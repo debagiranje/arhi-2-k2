@@ -12,7 +12,8 @@ korijeni() - метода враћа рјешење квадратне једн�
 
 """
 
-import math 
+import math
+from functools import reduce
 
 class KvadratniPolinom():
 
@@ -23,16 +24,22 @@ class KvadratniPolinom():
 
         self.lista_koeficijenata = [a, b, c]
 
+    def __str__(self):
+        return f"{self.lista_koeficijenata}"
+
     
     def dodaj_koeficijent(self, k, s):
         self.lista_koeficijenata = self.lista_koeficijenata[::-1]
 
         self.lista_koeficijenata[s] += k
 
+        return self.lista_koeficijenata[::-1]
+
     def obrisi_koeficijent(self, s):
         self.lista_koeficijenata = self.lista_koeficijenata[::-1]
 
         self.lista_koeficijenata[s] = 0
+        return self.lista_koeficijenata
     
     def korijeni(self):
         D = self.b**2 -4*self.a*self.c
@@ -73,9 +80,15 @@ p8 = KvadratniPolinom(-5,4,-3)
 p9 = KvadratniPolinom(1,1,1)
 p10 = KvadratniPolinom(3,2,1)
 
-lista = [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
 
-novi = list(map(KvadratniPolinom.__add__(), lista)) #fixdis
+novi = []
+lista =  [p1,p2,p3,p4,p5,p6,p7,p8,p9,p10]
+
+print(p1.dodaj_koeficijent(2, 1))
+
+
+
+    
 
 print(novi)
 
